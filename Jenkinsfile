@@ -2,6 +2,11 @@ pipeline {
     agent any
     stages {
         stage('Build') {
+            when {
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                }
+            }
             steps {
                 sh 'make'
                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
