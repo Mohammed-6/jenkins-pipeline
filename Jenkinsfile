@@ -1,29 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            when {
-                expression {
-                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                }
-            }
+        stage('Example') {
             steps {
-                echo 'Hello World'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo "Building.."
-            }
-        }
-        stage('Deploy') {
-            when {
-                expression {
-                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                }
-            }
-            steps {
-                echo currentBuild.result
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
             }
         }
     }
