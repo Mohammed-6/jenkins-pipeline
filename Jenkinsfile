@@ -1,9 +1,9 @@
 pipeline {
     agent any
+    environment {
+        CC = 'clang'
+    }
     stages {
-        environment {
-            CC = 'clang'
-        }
         stage('Example') {
             environment {
                 DEBUG_FLAGS = '-g'
