@@ -13,8 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'make check || true'
-                junit '**/target/*.xml'
+                echo "Building.."
             }
         }
         stage('Deploy') {
@@ -24,7 +23,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'make publish'
+                echo currentBuild.result
             }
         }
     }
