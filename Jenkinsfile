@@ -3,7 +3,7 @@ pipeline {
     environment {
         CC = """
             ${sh(
-            returnStdout: true
+            returnStdout: true,
             script: 'echo "clang"'
             )}
         """
