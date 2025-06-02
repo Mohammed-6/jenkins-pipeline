@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Example') {
             steps {
-                sh ('echo ${STATEMENT}')
+                sh ("echo ${STATEMENT}")
             }
         }
     }
