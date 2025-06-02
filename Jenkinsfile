@@ -1,27 +1,14 @@
 pipeline {
     agent any
     environment {
-        CC = """
-            ${sh(
-            returnStdout: true,
-            script: 'echo "clang"'
-            )}
-        """
-        EXIT_STATUS = """
-            ${sh(
-                returnStatus: true,
-                script: 'exit 1'
-            )}
-        """
+        EXAMPLE_CREDS = credentials('jenkins-bb')
     }
     stages {
         stage('Example') {
-            environment {
-                DEBUG_FLAGS = '-g'
-            }
             steps {
-                sh 'printenv'
+                sh ("curl -u ${EXAMPLE_CREDS_USR}:${EXAMPLE_CREDS_PSW} https://example.com")
             }
         }
+    }
     }
 }
