@@ -1,12 +1,12 @@
 pipeline {
     agent any
-    environment {
-        EXAMPLE_CREDS = credentials('jenkins-bb')
+    parameters {
+        string(name: 'STATEMENT', defaultValue: 'hello; ls /', description: 'What should I say?')
     }
     stages {
         stage('Example') {
             steps {
-                sh('curl -u $EXAMPLE_CREDS_USR:$EXAMPLE_CREDS_PSW https://example.com/')
+                sh ('echo ${STATEMENT}')
             }
         }
     }
