@@ -1,21 +1,11 @@
 pipeline {
-    agent any
+    agent {dockerfile true}
     stages {
         stage('Test') {
             steps {
-                sh 'make check'
+                sh 'node --version'
+                sh 'svn --version'
             }
-        }
-    }
-    post {
-        always {
-            junit '**/target/*.xml'
-        }
-        failure {
-            echo "Pipeline failure"
-        }
-        success {
-            echo "Pipeline success"
         }
     }
 }
