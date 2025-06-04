@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Example Test') {
             agent {
-                docker 'openjdk:21-jre'
+                docker 'openjdk:21'
             }
             steps {
                 echo 'Hello, JDK'
