@@ -1,23 +1,17 @@
 pipeline {
     agent any
-    tools {
-        maven 'apache-maven-3.0.1'
-    }
-    parameters {
-        string(name: "PERSON", defaultValue: 'Mr Jenkins', description:"")
-        text(name: "BIOGRAPHY", defaultValue: "CI/CD", description: "")
-        booleanParam(name: "TOOGLE", defaultValue: true, description: "")
-        choice(name: "CHOICES", choices: ['one', 'two', 'three'], description: "")
-        password(name: 'PASSWORD', defaultValue: "SECRET", description: "")
-    }
     stages {
         stage('Example') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should"
+                submitter "alice,bob"
+                parameters {
+                    string(name: "PERSON", defaultValue: "Mr Jenkins", description: "Who should I say hello to?")
+                }
+            }
             steps {
-                echo "Hello ${params.PERSON}"
-                echo "Biography: ${params.BIOGRAPHY}"
-                echo "Toogle: ${params.TOOGLE}"
-                echo "Choice: ${params.CHOICE}"
-                echo "Password: ${params.PASSWORD}"
+                echo "Hello, ${PERSON}, nice to meet you"
             }
         }
     }
