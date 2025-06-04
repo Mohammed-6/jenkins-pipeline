@@ -2,7 +2,9 @@ pipeline {
     agent any
     stages {
         stage('change step') {
-            echo 'Change me'
+            steps {
+                echo 'Change me'
+            }
             post {
                 changed {
                     echo 'Changed'
