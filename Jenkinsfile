@@ -1,15 +1,11 @@
 pipeline {
-    agent none
+    agent {
+        docker "maven:3.9.3-eclipse-temurin-17"
+    }
     stages {
-        stage('Docker step') {   
-            agent {
-                dockerfile {
-                    dir 'build'
-                    filename 'Dockerfile.build'
-                }
-            }
+        stage('Docker step') {
             steps {
-                sh 'echo "Running with Docker.."'
+                sh 'mvn -B clean verify'
             }
         }
     }
