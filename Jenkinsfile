@@ -6,7 +6,7 @@ pipeline {
                 docker {
                     image 'maven:3.9.3-eclipse-temurin-17'
                     label 'my-default-label'
-                    args -v /tmp:/tmp
+                    args '-v /tmp:/tmp'
                 }
             }
             steps {
