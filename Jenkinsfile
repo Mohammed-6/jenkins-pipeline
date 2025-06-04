@@ -9,7 +9,7 @@ pipeline {
                 }
             }    
             steps {
-                sh 'echo "Docker image'
+                sh 'echo "Docker image"'
             }
         }
     }
