@@ -1,37 +1,20 @@
 pipeline {
     agent any
-    environment {
-        CC = 'lang'
-    }
-    options {
-        timeout(time: 1, unit: "SECONDS")
+    parameters {
+        string(name: "PERSON", defaultValue: 'Mr Jenkins', description:"")
+        text(name: "BIOGRAPHY", defaultValue: "CI/CD", description: "")
+        booleanParam(name: "TOOGLE", defaultValue: true, description: "")
+        choice(name: "CHOICES", choices: ['one', 'two', 'three'], description: "")
+        password(name: 'PASSWORD', defaultValue: "SECRET", description: "")
     }
     stages {
-        stage('Example Username/Password') {
-            environment {
-                SERVICE_CREDS = credentials('example-cred')
-            }
-            steps {
-                sh 'echo "Service user is $SERVICE_CREDS_USR"'
-                sh 'echo "Service password is $SERVICE_CREDS_PSW"'
-                sh 'curl -u $SERVICE_CREDS https://example.com'
-            }
-        }
         stage('Example') {
-            environment {
-                SSH_CREDS = credentials('jenkins-agent-via-ssh')
-            }
             steps {
-                sh 'echo "SSH private key is located at $SSH_CREDS"'
-                sh 'echo "SSH user is $SSH_CREDS_USR"'
-                sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
-            }
-        }
-    }
-    post {
-        success {
-            options {
-                timestamps()
+                echo "Hello ${params.PERSON}"
+                echo "Biography: ${params.BIOGRAPHY}"
+                echo "Toogle: ${params.TOOGLE}"
+                echo "Choice: ${params.CHOICE}"
+                echo "Password: ${params.PASSWORD}"
             }
         }
     }
