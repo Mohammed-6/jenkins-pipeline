@@ -8,7 +8,9 @@ pipeline {
     }
     stages {
         stage('Docker step') {
-            agent {label 'my-default-label'}       
+            agent {
+                label 'my-default-label'
+            }       
             steps {
                 sh 'echo "Docker image'
             }
