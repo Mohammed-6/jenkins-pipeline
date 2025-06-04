@@ -3,6 +3,9 @@ pipeline {
     environment {
         CC = 'lang'
     }
+    options {
+        timeout(time: 1, unit: "SECONDS")
+    }
     stages {
         stage('Example Username/Password') {
             environment {
