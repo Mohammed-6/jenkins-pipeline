@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Docker Build') {
             agent {
-                docker "maven:3.9.3-eclipse-temurin-21"
+                docker "maven:3.9.9-eclipse-temurin-21"
             }
             steps {
                 echo "Hello, Maven"
