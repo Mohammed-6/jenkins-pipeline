@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'apache-maven-3.0.1'
+    }
     parameters {
         string(name: "PERSON", defaultValue: 'Mr Jenkins', description:"")
         text(name: "BIOGRAPHY", defaultValue: "CI/CD", description: "")
