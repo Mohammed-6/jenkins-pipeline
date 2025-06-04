@@ -1,8 +1,22 @@
-node {
-    checkout scm
-    def customImage = docker.build("my-image${env.BUILD_ID}")
-
-    customImage.inside {
-        sh 'make test'
+pipeline {
+    agent none
+    stages {
+        stage('Docker step') {
+            agent {
+                docker {
+                    image 'maven:3.9.3-eclipse-temurin-17'
+                    label 'my-default-label'
+                    args -v /tmp:/tmp
+                }
+            }
+            steps {
+                sh 'echo "Docker image'
+            }
+        }
+    }
+    post {
+        success {
+            echo "SUCCESS"
+        }
     }
 }
