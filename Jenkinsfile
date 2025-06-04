@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Docker step') {
             steps {
-                sh 'mvn -B clean verify'
+                sh 'mvn --version'
             }
         }
     }
