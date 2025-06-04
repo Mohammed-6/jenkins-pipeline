@@ -1,16 +1,13 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.3-eclipse-temurin-17'
-            label 'my-default-label'
-            args '-v /tmp:/tmp'
-        }
-    }
+    agent none
     stages {
-        stage('Docker step') {
-            agent {
-                label 'my-default-label'
-            }       
+        stage('Docker step') {   
+        agent {
+            docker {
+                image 'maven:3.9.3-eclipse-temurin-17'
+                args '-v /tmp:/tmp'
+            }
+        }    
             steps {
                 sh 'echo "Docker image'
             }
