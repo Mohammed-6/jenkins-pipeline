@@ -15,6 +15,11 @@ pipeline {
             steps {
                 sh 'echo "Hello World'
             }
+            post {
+                regression {
+                    echo "Previous was success db failure"
+                }
+            }
         }
     }
     post {
