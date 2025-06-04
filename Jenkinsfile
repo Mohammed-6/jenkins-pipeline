@@ -28,4 +28,11 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            options {
+                timestamps()
+            }
+        }
+    }
 }
