@@ -14,8 +14,10 @@ pipeline {
             agent {
                 docker 'openjdk:21-jre'
             }
-            echo 'Hello, JDK'
-            sh 'java -version'
+            steps {
+                echo 'Hello, JDK'
+                sh 'java -version'
+            }
         }
     }
     post {
