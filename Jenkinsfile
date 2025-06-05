@@ -1,10 +1,16 @@
 pipeline {
     agent any
-    matrix {
-        axes {
-            axis {
-                name 'PLATFORM'
-                value 'linux', 'mac', 'windows'
+    stages {
+        stage('Example') {
+            steps {
+                echo "Hello World"
+
+                script {
+                    def browsers = ['chrome', 'firefox']
+                    for (in i = 0; i < browsers.size(), ++i) {
+                        echo "Testing the ${browsers[i]} browser"
+                    }
+                }
             }
         }
     }
