@@ -1,5 +1,8 @@
 pipeline {
     agent none
+    options {
+        parallelsAlwaysFailFast()
+    }
     stages {
         stage('example build') {
             steps {
@@ -8,7 +11,6 @@ pipeline {
         }
         stage('example deploy') {
             agent any
-            failFast true
             when {
                 branch 'master'
             }
