@@ -11,7 +11,10 @@ pipeline {
         }
         stage('example deploy') {
             agent any
-            stages {
+            when {
+                branch 'master'
+            }
+            parallel {
                 stage('In Sequential 1') {
                     steps {
                         echo "In Sequential 1"
@@ -23,7 +26,7 @@ pipeline {
                     }
                 }
                 stage('Parallel in Sequential') {
-                    parallel {
+                    stages {
                         stage('In Parallel 1'){
                             steps {
                                 echo 'In parallel 1'
@@ -32,6 +35,20 @@ pipeline {
                         stage('In Parallel 2'){
                             steps {
                                 echo 'In parallel 2'
+                            }
+                        }
+                        stage('In Stage 3') {
+                            stages {
+                                stage('Nested 1') {
+                                    steps {
+                                        echo "In stage Nested 1 with in stage 3"
+                                    }
+                                }
+                                stage('Nested 2') {
+                                    steps {
+                                        echo "In stage Nested 2 with in stage 3"
+                                    }
+                                }
                             }
                         }
                     }
