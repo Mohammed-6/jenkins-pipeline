@@ -12,18 +12,14 @@ pipeline {
             }
             fastFail true
             parallel {
-            agent any
                 stage('In Sequential 1') {
+                    agent any
                     steps {
                         echo "In Sequential 1"
                     }
                 }
-                stage('In Sequential 2') {
-                    steps {
-                        echo "In Sequential 2"
-                    }
-                }
                 stage('Parallel in Sequential') {
+                    agent any
                     stages {
                         stage('In Parallel 1'){
                             steps {
