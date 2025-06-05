@@ -9,8 +9,12 @@ pipeline {
         stage('example deploy') {
             agent any
             when {
-                beforeAgent true
+                beforeInput true
                 branch 'production'
+            }
+            input {
+                message "Deploy tp production?"
+                id 'simple-input'
             }
             steps {
                 echo 'Deploying'
