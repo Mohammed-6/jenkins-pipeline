@@ -7,12 +7,12 @@ pipeline {
             }
         }
         stage('example deploy') {
-            agent any
             when {
                 branch 'master'
             }
             fastFail true
             parallel {
+            agent any
                 stage('In Sequential 1') {
                     steps {
                         echo "In Sequential 1"
