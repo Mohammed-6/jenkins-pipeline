@@ -9,14 +9,10 @@ pipeline {
         stage('example deploy') {
             agent any
             when {
-                beforeOptions true
-                branch 'testing'
-            }
-            options {
-                lock label: 'testing-deploy-envs', quantity: 1, variable: 'deployEnv'
+                triggeredBy "TimerTrigger"
             }
             steps {
-                echo "Deploying to ${deployEnv}"
+                echo "Deploying"
             }
         }
     }
