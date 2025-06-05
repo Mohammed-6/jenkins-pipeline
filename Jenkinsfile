@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
     stages {
         stage('example build') {
             steps {
@@ -7,13 +7,10 @@ pipeline {
             }
         }
         stage('example deploy') {
+            agent any
             when {
-                expression { branch ==~ /(production|staging)/ }
-                allOf{
-                    environment name: 'DEPLOY_TO', value: 'production'
-                    environment name: 'DEPLOY_TO', value: 'staging'
-                }
-                
+                beforeAgent true
+                branch 'production'
             }
             steps {
                 echo 'Deploying'
