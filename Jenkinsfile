@@ -1,8 +1,5 @@
 pipeline {
     agent none
-    options {
-        parallelsAlwaysFailFast()
-    }
     stages {
         stage('example build') {
             steps {
