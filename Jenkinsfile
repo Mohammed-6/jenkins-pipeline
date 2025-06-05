@@ -9,15 +9,14 @@ pipeline {
         stage('example deploy') {
             agent any
             when {
-                beforeInput true
-                branch 'production'
+                beforeOptions true
+                branch 'testing'
             }
-            input {
-                message "Deploy tp production?"
-                id 'simple-input'
+            options {
+                lock label: 'testing-deploy-envs', quantity: 1. variable: 'deployEnv'
             }
             steps {
-                echo 'Deploying'
+                echo "Deploying to ${deployEnv}"
             }
         }
     }
