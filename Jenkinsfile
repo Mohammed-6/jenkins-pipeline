@@ -8,8 +8,9 @@ pipeline {
         }
         stage('example deploy') {
             agent any
+            failFast true
             when {
-                triggeredBy "TimerTrigger"
+                branch 'master'
             }
             steps {
                 echo "Deploying"
