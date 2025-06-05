@@ -4,9 +4,6 @@ pipeline {
         stage('Example') {
             steps{
                 sh 'echo "Hello World"'
-                script {
-                    currentBuild.keepLog = true
-                }
             }
         }
     }
