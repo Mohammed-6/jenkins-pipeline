@@ -14,6 +14,7 @@ pipeline {
             when {
                 branch 'master'
             }
+            fastFail true
             parallel {
                 stage('In Sequential 1') {
                     steps {
